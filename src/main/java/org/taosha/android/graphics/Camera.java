@@ -1,5 +1,5 @@
 
-package com.zhcnxf.android.backports.graphics;
+package org.taosha.android.graphics;
 
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -9,7 +9,7 @@ public class Camera {
     private float[] values = new float[9];
 
     /**
-     * Creates a new camera, with empty transformations.
+ with empty transformations.
      */
     public Camera() {
         nativeConstructor();
@@ -155,6 +155,6 @@ public class Camera {
     int native_matrix;
 
     static {
-        System.loadLibrary("camera");
+        System.loadLibrary("graphics");
     }
 }

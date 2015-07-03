@@ -120,8 +120,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK) {
         return JNI_ERR;
     }
-    jclass clazz = env->FindClass(
-            "com/zhcnxf/android/backports/graphics/Camera");
+    jclass clazz = env->FindClass("org/taosha/android/graphics/Camera");
     if (clazz == 0) {
         return JNI_ERR;
     }

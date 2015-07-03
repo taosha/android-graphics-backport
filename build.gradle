@@ -1,0 +1,52 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+	}
+}
+apply plugin: 'com.android.library'
+
+group 'org.taosha.android'
+version '0.1.0'
+
+android {
+	compileSdkVersion 22
+	buildToolsVersion '22.0.1'
+	
+	defaultConfig {
+		minSdkVersion 4
+		targetSdkVersion 22
+		versionCode 1
+		versionName version
+		
+		ndk {
+		   moduleName "graphics"
+		   cFlags "-DANDROID_NDK"
+		}
+	}
+
+	productFlavors {
+        x86 {
+            ndk {
+                abiFilter "x86"
+            }
+        }
+        mips {
+            ndk {
+                abiFilter "mips"
+            }
+        }
+        armv7 {
+            ndk {
+                abiFilter "armeabi-v7a"
+            }
+        }
+        arm {
+            ndk {
+                abiFilter "armeabi"
+            }
+        }
+    }
+}
