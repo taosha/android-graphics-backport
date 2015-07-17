@@ -7,6 +7,7 @@ buildscript {
 	}
 }
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 group 'org.taosha.android'
 version '0.1.0'
@@ -50,3 +51,19 @@ android {
         }
     }
 }
+
+afterEvaluate {
+	android.libraryVariants.each { variant ->
+		if (variant.buildType.name ==  "release") {
+			publishing.publications.create variant.flavorName, MavenPublication, {
+				groupId group
+				version version
+				artifactId "$project.name-$variant.flavorName"
+				artifact variant.outputs.outputFile.get(0)
+			}
+		}
+	}
+	tasks.publishToMavenLocal.dependsOn tasks.assemble
+	tasks.publish.dependsOn tasks.assemble
+}
+
