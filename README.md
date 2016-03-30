@@ -4,7 +4,7 @@ Camera.setLocation() for pre-android-9 sdks
 ## Build
 `./gradlew build` or `./gradlew publishToMavenLocal`
 
-**Note**: before building, you need a `local.properties` file in the project.
+**Note**: before building, you need a `local.properties` file in your project root directory.
 ```properties
 sdk.dir={ANDROID_SDK_DIR}
 ndk.dir={ANDROID_NDK_DIR}
