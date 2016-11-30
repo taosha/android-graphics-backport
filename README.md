@@ -19,10 +19,8 @@ ndk.dir={ANDROID_NDK_DIR}
 	}
 
 	dependencies {
-		compile "org.taosha.android:android-graphics-backport-arm:0.1.0@aar"
-	// or	compile "org.taosha.android:android-graphics-backport-armv7:0.1.0@aar"
-	// or	compile "org.taosha.android:android-graphics-backport-x86:0.1.0@aar"
-	// or	compile "org.taosha.android:android-graphics-backport-mips:0.1.0@aar"
+		compile "org.taosha.android:android-graphics-backport:armv7:0.1.0@aar"
+	// or	compile "org.taosha.android:android-graphics-backport:x86:0.1.0@aar"
 	}
 	```
 3. Use class `org.taosha.android.graphics.Camera` the way you use `android.graphics.Camera`.

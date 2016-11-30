@@ -1,5 +1,3 @@
-#define SK_BUILD_FOR_ANDROID
-
 #include "jni.h"
 #include "skia/SkCamera.h"
 

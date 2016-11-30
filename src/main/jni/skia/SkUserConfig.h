@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2006 The Android Open Source Project
  *
@@ -9,8 +8,6 @@
 
 #ifndef SkUserConfig_DEFINED
 #define SkUserConfig_DEFINED
-
-#define SK_BUILD_FOR_ANDROID
 
 /*  SkTypes.h, the root of the public header files, does the following trick:
 
@@ -95,6 +92,8 @@
     this to something other than printf, define yours here
  */
 //#define SkDebugf(...)  MyFunction(__VA_ARGS__)
+// TODO: Define LOG
+#define SkDebugf(...)
 
 /*
  *  To specify a different default font cache limit, define this. If this is
@@ -156,10 +155,10 @@
 /*  Change the ordering to work in X windows.
  */
 #ifdef SK_SAMPLES_FOR_X
-        #define SK_R32_SHIFT    16
-        #define SK_G32_SHIFT    8
-        #define SK_B32_SHIFT    0
-        #define SK_A32_SHIFT    24
+#define SK_R32_SHIFT    16
+#define SK_G32_SHIFT    8
+#define SK_B32_SHIFT    0
+#define SK_A32_SHIFT    24
 #endif
 
 

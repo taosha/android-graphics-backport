@@ -1,10 +1,10 @@
 buildscript {
-	repositories {
-		jcenter()
-	}
-	dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
-	}
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+    }
 }
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
@@ -13,30 +13,43 @@ group 'org.taosha.android'
 version '0.1.0'
 
 android {
-	compileSdkVersion 22
-	buildToolsVersion '22.0.1'
-	
-	defaultConfig {
-		minSdkVersion 4
-		targetSdkVersion 22
-		versionCode 1
-		versionName version
-		
-		ndk {
-		   moduleName "graphics"
-		   cFlags "-DANDROID_NDK"
-		}
-	}
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
-	productFlavors {
+    defaultConfig {
+        minSdkVersion 4
+        targetSdkVersion 25
+        versionCode 1
+        versionName version
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    buildTypes {
+        debug {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DSK_DEBUG"
+                }
+            }
+        }
+        release {
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-DSK_RELEASE"
+                }
+            }
+        }
+    }
+
+    productFlavors {
         x86 {
             ndk {
                 abiFilter "x86"
-            }
-        }
-        mips {
-            ndk {
-                abiFilter "mips"
             }
         }
         armv7 {
@@ -44,26 +57,23 @@ android {
                 abiFilter "armeabi-v7a"
             }
         }
-        arm {
-            ndk {
-                abiFilter "armeabi"
-            }
-        }
     }
 }
 
 afterEvaluate {
-	android.libraryVariants.each { variant ->
-		if (variant.buildType.name ==  "release") {
-			publishing.publications.create variant.flavorName, MavenPublication, {
-				groupId group
-				version version
-				artifactId "$project.name-$variant.flavorName"
-				artifact variant.outputs.outputFile.get(0)
-			}
-		}
-	}
-	tasks.publishToMavenLocal.dependsOn tasks.assemble
-	tasks.publish.dependsOn tasks.assemble
+    android.libraryVariants.each { variant ->
+        if (variant.buildType.name == "release") {
+            publishing.publications.create variant.flavorName, MavenPublication, {
+                groupId group
+                version version
+                artifactId "$project.name"
+                artifact(variant.outputs.outputFile.get(0)) {
+                    classifier "$variant.flavorName"
+                }
+            }
+        }
+    }
+    tasks.publishToMavenLocal.dependsOn tasks.assemble
+    tasks.publish.dependsOn tasks.assemble
 }
 

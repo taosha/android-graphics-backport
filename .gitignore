@@ -22,3 +22,7 @@ bin
 
 # Android
 local.properties
+
+/obj
+/libs
+.externalNativeBuild/
