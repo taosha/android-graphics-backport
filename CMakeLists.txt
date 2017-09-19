@@ -4,13 +4,8 @@ project(graphics)
 
 include_directories(src/main/jni/)
 
-aux_source_directory(src/main/jni SOURCES)
+file(GLOB SOURCES src/main/jni/**/*.cpp)
 
 add_library( graphics
              SHARED
-             src/main/jni/camera.cpp
-             src/main/jni/skia/SkCamera.cpp
-             src/main/jni/skia/SkFloatBits.cpp
-             src/main/jni/skia/SkMath.cpp
-             src/main/jni/skia/SkScalar.cpp )
-
+             ${SOURCES} )
